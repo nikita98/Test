@@ -1,0 +1,17 @@
+---
+develop:
+  image: "ictu/sshpass"
+  tags: ['ssh']
+  stage: deploy
+  environment:
+    name: development
+    url: http://sky.dev.va-promotion.ru/
+  variables:
+    DEPLOY_PATH: "public_html"
+    DEPLOY_DIR: 'wp-content/themes/sky/assets'
+  script:
+  - echo "Loading contents to ${DEPLOY_PATH}/${DEPLOY_DIR}"
+  - sshpass -p $SFTP_PASS ssh -T -o StrictHostKeyChecking=no $SFTP_LOGIN@$SFTP_HOST "cd ~/${DEPLOY_PATH}/${DEPLOY_DIR}; git fetch --all; git reset --hard origin/${CI_COMMIT_REF_NAME};"
+  only:
+  - develop
+  - feature/deploy
