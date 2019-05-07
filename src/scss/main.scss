@@ -101,7 +101,7 @@ input::placeholder, textarea::placeholder{
   display: flex;
   justify-content: center;
   align-items: center;
-
+  
   &__plus {
     position: absolute;
     background-color: rgba(#878787, 0.05);
@@ -112,7 +112,7 @@ input::placeholder, textarea::placeholder{
     width: 54px;
     border-radius: 100px;
     margin: auto 0;
-
+    transition: 0.3s;
     &:before, &:after {
       content: "";
       position: absolute;
@@ -131,6 +131,10 @@ input::placeholder, textarea::placeholder{
       height: 14px;
       width: 2.5px;
     }
+  }
+  &:hover &__plus{
+    transform: translateY(-50%) rotate(360deg);
+
   }
 }
 
